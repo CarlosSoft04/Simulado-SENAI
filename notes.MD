@@ -1,7 +1,6 @@
 # LISTA DE TAREFAS
 
 # BASE DE DADOS
-
     usuarios
     id_usuario int primary key auto_increment not null,
     nome varchar(50) not null,
@@ -14,7 +13,7 @@
     setor varchar(20) not null,
     prioridade enum('baixa','media','alta'),
     data_cadastro datetime default current_timestamp,
-    status enum('a fazer','fazendo','pronto') not null default 'a fazer',
+    status enum('a fazer','fazendo','pronto') not  null default 'a fazer',
     usuario_id int not null,
     foreign key(usuario_id) references usuarios(id_usuario)
 
@@ -46,3 +45,12 @@
          botao para submter a alteracao
 
     (ELIMINAR SERA FEITO COM UMA MODEL)
+
+
+
+# BACKEND
+
+    -Criar um servidor nodejs + express + mysql
+    -Criar um endpoint inicalpara testar conmunicacoes
+
+    (Eliminar sera feito com uma model)
