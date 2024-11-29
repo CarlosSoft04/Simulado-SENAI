@@ -1,5 +1,10 @@
+
+let id =1;
+
+
 window.onload = () => {
-    get_username(1); // Chama a função para pegar o usuário com ID 1
+    get_username(id); // Chama a função para pegar o usuário com ID 1
+    get_user_tasks(id);
 }
 
 function get_username(id) {
@@ -23,3 +28,25 @@ function get_username(id) {
         console.log('Erro ao realizar a requisição:', error);
     });
 }
+
+
+function get_username(id) {
+    fetch(`http://localhost:3000/user/${id}/tasks`)
+    .then(response => {
+        if (response.status === 200) {
+            return response.json(); // Retorna a resposta como JSON
+        } else {
+            console.log('ERROR: Usuário não encontrado ou erro na requisição');
+        }
+    })
+    .then(dados => {
+        if (dados.length === 0) {
+            console.log('Erro!');
+        } else {
+
+        console.log(dados)
+           
+        }
+    })
+    
+    };
