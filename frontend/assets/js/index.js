@@ -1,52 +1,51 @@
+// javascript do index.html
 
-let id =1;
-
+let id = 1
 
 window.onload = () => {
-    get_username(id); // Chama a função para pegar o usuário com ID 1
+    
+    get_username(id);
     get_user_tasks(id);
 }
 
-function get_username(id) {
+// ---------------------------------------------------
+function get_username(id){
+
     fetch(`http://localhost:3000/user/${id}`)
     .then(response => {
-        if (response.status === 200) {
-            return response.json(); // Retorna a resposta como JSON
+        if(response.status === 200){
+            return response.json();
         } else {
-            console.log('ERROR: Usuário não encontrado ou erro na requisição');
+            console.log('ERRO!');
         }
     })
     .then(dados => {
-        if (!dados || !dados.username) {
-            console.log('Erro: Dados ou username não encontrados');
-        } else {
-            // Preenche o elemento com id "username" com o nome do usuário
-            document.querySelector("#username").textContent = dados.username;
-        }
-    })
-    .catch(error => {
-        console.log('Erro ao realizar a requisição:', error);
-    });
-}
-
-
-function get_username(id) {
-    fetch(`http://localhost:3000/user/${id}/tasks`)
-    .then(response => {
-        if (response.status === 200) {
-            return response.json(); // Retorna a resposta como JSON
-        } else {
-            console.log('ERROR: Usuário não encontrado ou erro na requisição');
-        }
-    })
-    .then(dados => {
-        if (dados.length === 0) {
+        if(dados.length === 0){
             console.log('Erro!');
         } else {
-
-        console.log(dados)
-           
+            document.querySelector("#username").textContent = dados[0].username;
         }
     })
-    
-    };
+
+}
+
+// ---------------------------------------------------
+function get_user_tasks(id){
+
+    fetch(`http://localhost:3000/user/${id}/tasks`)
+    .then(response => {
+        if(response.status === 200){
+            return response.json();
+        } else {
+            console.log('ERRO!');
+        }
+    })
+    .then(dados => {
+        if(dados.length === 0){
+            document.querySelector("#no_tasks").classList.remove("d-none");
+        } else {
+            console.log(dados);
+        }
+    })
+
+}
