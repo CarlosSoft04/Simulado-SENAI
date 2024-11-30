@@ -1,3 +1,4 @@
+
 // Corrigindo o frontend para verificar corretamente o status
 let id = 1;
 
@@ -81,7 +82,7 @@ function get_user_tasks(id) {
                             </div>
                         </div>
                         <div class="col-2">
-                            <select id="task_status" class="form-select p-2 ${color.select_bg_color}
+                            <select id="task_status_${chamado.id_chamados}" onchange="change_task_status(${chamado.id_chamados})" class="form-select p-2 ${color.select_bg_color}
                                 <option value="a fazer" ${
                                   chamado.status == "a fazer" ? "selected" : ""
                                 }>a fazer</option>
@@ -98,12 +99,8 @@ function get_user_tasks(id) {
                                 }>pronto</option>
                             </select>
                         </div>
-                        <div class="col-1 text-end"><span class = "edit_link" data-id-task="${
-                          chamado.id_chamados
-                        }" ><i class="fa-regular fa-pen-to-square me-2"></i>Edit</span></div>
-                        <div class="col-1 text-end"><span class = "delete_link" data-id_task="${
-                          chamado.id_chamados
-                        }"><i class="fa-regular fa-trash-can me-2"></i>Delete</span></div>
+                        <div class="col-1 text-end"><span class = "edit_link" onclick="edit_task"(${chamado.id_chamados})" ><i class="fa-regular fa-pen-to-square me-2"></i>Edit</span></div>
+                        <div class="col-1 text-end"><span class = "delete_link"onclick="delete_task"(${chamado.id_chamados})"><i class="fa-regular fa-trash-can me-2"></i>Delete</span></div>
                     </div>
                 </div>
             </div>`;
@@ -120,4 +117,30 @@ function get_user_tasks(id) {
           chamados.length;
       }
     });
+}
+
+
+function edit_task(id_chamados) {
+  console.log(id_chamados);
+} 
+
+function delete_task(id_chamados) {
+  console.log(id_chamados);
+}
+
+function change_task_status(id_chamados){
+  console.log(id_chamados);
+
+
+  let status = document.querySelector("#task_status_" + id_chamados).value;
+
+  fetch(`http://localhost:3000/user/${id}/tasks/update_status/`, {
+    method: 'POST',
+    headers: {'Content-Type' : 'application/json'},
+    body: JSON.stringify({id, id_chamados, status})
+  })
+  .then(response => {
+    console.log('OK')
+  })
+  
 }

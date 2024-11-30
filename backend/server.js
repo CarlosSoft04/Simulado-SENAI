@@ -16,6 +16,7 @@ app.listen(3000, () => {
 })
 
 app.use(cors());
+app.use(express.json());
 
 // rotas
 // ----------------------------------------
@@ -46,5 +47,17 @@ app.get("/user/:id/tasks/", (req, res) => {
         }
         res.json(results);
     })
+});
+
+app.post("/user/:id/tasks/update_status/", (req, res) => {
+    // Log do parâmetro 'id' que é passado pela URL
+    console.log(req.params.id);
+    
+    // Log do corpo da requisição (body) e o campo 'id_chamados' que é enviado no JSON
+    console.log(req.body.id_chamados);
+    
+    // Log do status enviado no corpo da requisição
+    console.log(req.body.status);
+    res.send('OK')
 });
  
