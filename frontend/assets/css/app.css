@@ -1,0 +1,15 @@
+.edit_link {
+    cursor: pointer;
+}
+
+.edit_link:hover{
+    color: #5bc0de;
+}
+
+.delete_link {
+    cursor: pointer;
+}
+
+.delete_link:hover{
+    color: rgb(156, 29, 29);
+}

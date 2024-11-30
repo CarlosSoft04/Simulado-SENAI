@@ -42,9 +42,35 @@ function get_user_tasks(id) {
         document.querySelector("#no_tasks").classList.remove("d-none");
         document.querySelector("#total_tasks").classList.add("d-none");
       } else {
-        document.querySelector('#tasks_container').innerHTML = null;
-       
+        document.querySelector("#tasks_container").innerHTML = null;
+
+        let colors = [
+          {
+            task_status: "a fazer",
+            select_bg_color: "bg-white",
+          },
+          {
+            task_status: "fazendo",
+            select_bg_color: "bg-info",
+          },
+          {
+            task_status: "cancelada",
+            select_bg_color: "bg-danger",
+          },
+          {
+            task_status: "pronto",
+            select_bg_color: "bg-success",
+          },
+        ];
+
         chamados.forEach((chamado) => {
+
+          let color = colors.find(item => item.task_status == chamado.status);
+          console.log(color)
+
+
+
+
           let html = `
                 <div class="col-12 border border-secondary rounded p-3 shadow">
                     <div class="row align-items-center">
@@ -55,15 +81,29 @@ function get_user_tasks(id) {
                             </div>
                         </div>
                         <div class="col-2">
-                            <select id="task_status" class="form-select p-2">
-                                <option value="a fazer" ${chamado.status == 'a fazer' ? 'selected' : ''}>a fazer</option>
-                                <option value="fazendo" ${chamado.status == 'fazendo' ? 'selected' : ''}>fazendo</option>
-                                <option value="cancelada" ${chamado.status == 'cancelada' ? 'selected' : ''}>cancelada</option>
-                                <option value="pronto" ${chamado.status == 'pronto' ? 'selected' : ''}>pronto</option>
+                            <select id="task_status" class="form-select p-2 ${color.select_bg_color}
+                                <option value="a fazer" ${
+                                  chamado.status == "a fazer" ? "selected" : ""
+                                }>a fazer</option>
+                                <option value="fazendo" ${
+                                  chamado.status == "fazendo" ? "selected" : ""
+                                }>fazendo</option>
+                                <option value="cancelada" ${
+                                  chamado.status == "cancelada"
+                                    ? "selected"
+                                    : ""
+                                }>cancelada</option>
+                                <option value="pronto" ${
+                                  chamado.status == "pronto" ? "selected" : ""
+                                }>pronto</option>
                             </select>
                         </div>
-                        <div class="col-1 text-end "><span class = "bg-white" ><i class="fa-regular fa-pen-to-square me-2"></i>Edit</span></div>
-                        <div class="col-1 text-end text-danger"><i class="fa-regular fa-trash-can me-2"></i>Delete</div>
+                        <div class="col-1 text-end"><span class = "edit_link" data-id-task="${
+                          chamado.id_chamados
+                        }" ><i class="fa-regular fa-pen-to-square me-2"></i>Edit</span></div>
+                        <div class="col-1 text-end"><span class = "delete_link" data-id_task="${
+                          chamado.id_chamados
+                        }"><i class="fa-regular fa-trash-can me-2"></i>Delete</span></div>
                     </div>
                 </div>
             </div>`;
@@ -76,7 +116,8 @@ function get_user_tasks(id) {
         });
         document.querySelector("#no_tasks").classList.add("d-none");
         document.querySelector("#total_tasks").classList.remove("d-none");
-        document.querySelector("#total_tasks > div > h4 > span").textContent = chamados.length;
+        document.querySelector("#total_tasks > div > h4 > span").textContent =
+          chamados.length;
       }
     });
 }
