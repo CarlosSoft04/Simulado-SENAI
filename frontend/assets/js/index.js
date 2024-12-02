@@ -124,3 +124,15 @@ document.querySelector("#btn_new_task").addEventListener("click", () => {
   const url = window.location.origin + "/frontend/new_task.html?id_user=" + id;
   window.location.href = url;
 });
+
+
+function edit_task(id_chamados){
+  const url = window.location.origin + "/frontend/edit_task.html?id_task=" + id_task;
+  window.location.href = url;
+}
+
+// ---------------------------------------------------
+function delete_task(id_chamados){
+  console.log(id_chamados);
+}
+

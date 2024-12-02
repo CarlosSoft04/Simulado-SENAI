@@ -1,155 +1,61 @@
 <!DOCTYPE html>
 <html lang="pt">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lista de tarefas</title>
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets/fontawesome/all.min.css" />
-    <link
-      rel="shortcut icon"
-      href="assets/images/favicon.png"
-      type="image/png"
-    />
-  </head>
-  <body>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LISTA DE CHAMADOS</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fontawesome/all.min.css">
+    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/png">
+</head>
+<body>
 
+    <div class="container my-5">
 
-
-<div class="container my-5">
-    <!-- CABECALHO -->s
-    <div class="row mb-4">
-      <div class="col">
-          <div class="d-flex justify-content-start">
-          <img src="assets/images/favicon.png" alt="Logo"class="img-fluid me-4"width="70px"/>
-          <h1>Gerenciamento de chamados</h1>
-        </div> 
-      </div>
-
-    <hr class="my-3" />
-  </div> 
-
-
-  <!--ESPACO PARA CRIAR NOCA TAREFA-->
-  <div class="row">
-    <div class="col">
-
-        <h3>Editar Chamado</h3>
-        <div class="mb-3">
-            <input type="text" id="text_task_text" class="form-control" maxlength="100" placeholder="Descricao tarefa" value="">
+        <!-- cabeçalho -->
+        <div class="row mb-4">
+            <div class="col">
+                <div class="d-flex justify-content-start">
+                    <img src="assets/images/favicon.png" alt="Logo" class="img-fluid me-3" width="40px">
+                    <h1>Lista de Tarefas</h1>
+                </div>
+            </div>
+            <hr class="my-3">
         </div>
-        <div class="text-center">
-            <a href="index.html" class="btn btn-secondary">Cancelar</a>
-            <button class="btn btn-primary" id="btn_guardar">Atualizar</button>
+
+
+
+        <!-- espaço para criar nova tarefa -->
+        <div class="row">
+            <div class="col">
+
+                <h3>Editar chamado</h3>
+                <div class="mb-3">
+                    <input type="text" id="text_task_text" class="form-control" maxlength="100" placeholder="Designação da chamado" value="">
+                </div>
+                <div class="text-center">
+                    <a href="index.html" class="btn btn-secondary">Cancelar</a>
+                    <button class="btn btn-primary" id="btn_guardar">Atualizar</button>
+                </div>
+            </div>
         </div>
-       
-    </div>
-  </div>
-  
 
 
 
 
+        <!-- footer -->
+        <div class="row mt-3">
+            <div class="col text-center">
+                <hr>
+                <p>Lista de tarefas &copy; 2024</p>
+            </div>
+        </div>
 
 
-
-
-
-
-
-
-
-
-
-
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!--FOOTER-->
-    <div class="row mt-3">
-      <div class="col text-center">
-        <hr />
-        <p>Lista de chamados &copy; 2025</p>
-      </div>
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
     <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/edit_tasks.js"></script>
-  </body>
+    <script src="assets/js/edit_task.js"></script>
+</body>
 </html>
