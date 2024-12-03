@@ -1,4 +1,4 @@
-let id = 1; // Defina o id do usuário conforme necessário
+let id = 1; 
 
 let colors = [
   {
@@ -63,31 +63,44 @@ function get_user_tasks(id) {
         chamados.forEach((chamado) => {
           let color = colors.find((item) => item.task_status == chamado.status);
           let html = `
-                <div class="col-12 border border-secondary rounded p-3 shadow">
-                    <div class="row align-items-center">
-                        <div class="col-8">
-                            <div class="d-flex align-items-center">
-                                <h5 class="me-3 text-info"><i class="fa-solid fa-circle-chevron-right"></i></h5>
-                                <h5>${chamado.descricao}</h5>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <select id="task_status_${chamado.id_chamados}" onchange="change_task_status(${chamado.id_chamados})" class="form-select p-2 ${color.select_bg_color}">
-                                <option value="a fazer" ${chamado.status == "a fazer" ? "selected" : ""}>a fazer</option>
-                                <option value="fazendo" ${chamado.status == "fazendo" ? "selected" : ""}>fazendo</option>
-                                <option value="cancelada" ${chamado.status == "cancelada" ? "selected" : ""}>cancelada</option>
-                                <option value="pronto" ${chamado.status == "pronto" ? "selected" : ""}>pronto</option>
-                            </select>
-                        </div>
-                    </div>
+            <div class="col-12 border border-secondary rounded p-3 shadow">
+              <div class="row align-items-center">
+                <div class="col-8">
+                  <div class="d-flex align-items-center">
+                    <h5 class="me-3 text-info"><i class="fa-solid fa-circle-chevron-right"></i></h5>
+                    <h5>${chamado.descricao}</h5>
+                  </div>
                 </div>
-            `;
+                <div class="col-2">
+                  <select id="task_status_${chamado.id_chamados}" onchange="change_task_status(${chamado.id_chamados})" class="form-select p-2 ${color.select_bg_color}">
+                    <option value="a fazer" ${chamado.status == "a fazer" ? "selected" : ""}>a fazer</option>
+                    <option value="fazendo" ${chamado.status == "fazendo" ? "selected" : ""}>fazendo</option>
+                    <option value="cancelada" ${chamado.status == "cancelada" ? "selected" : ""}>cancelada</option>
+                    <option value="pronto" ${chamado.status == "pronto" ? "selected" : ""}>pronto</option>
+                  </select>
+                </div>
+                <!-- Campo de Prioridade -->
+                <div class="col-2">
+                  <select
+                    id="task_priority_${chamado.id_chamados}"
+                    class="form-select p-2"
+                    onchange="change_task_priority(${chamado.id_chamados})"
+                  >
+                    <option value="baixa" ${chamado.prioridade === "baixa" ? "selected" : ""}>Baixa</option>
+                    <option value="media" ${chamado.prioridade === "media" ? "selected" : ""}>Média</option>
+                    <option value="alta" ${chamado.prioridade === "alta" ? "selected" : ""}>Alta</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          `;
 
           let new_task = document.createElement("div");
           new_task.classList.add("row", "mb-3");
           new_task.innerHTML = html;
           document.querySelector("#tasks_container").appendChild(new_task);
         });
+
         document.querySelector("#no_tasks").classList.add("d-none");
         document.querySelector("#total_tasks").classList.remove("d-none");
         document.querySelector("#total_tasks > div > h4 > span").textContent = chamados.length;
@@ -120,19 +133,26 @@ function change_task_status(id_chamados) {
   select.classList.add(color_obj.select_bg_color);
 }
 
+// Função para alterar a prioridade da tarefa
+function change_task_priority(id_chamados) {
+  let prioridade = document.querySelector(`#task_priority_${id_chamados}`).value;
+
+  fetch(`http://localhost:3000/user/tasks/update_priority`, {
+    method: 'POST',
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ id_chamados, prioridade }),
+  })
+    .then((response) => {
+      if (response.status === 200) {
+        return response.json();
+      }
+    })
+    .then((dados) => {
+      console.log(dados);
+    });
+}
+
 document.querySelector("#btn_new_task").addEventListener("click", () => {
-  const url = window.location.origin + "/frontend/new_task.html?id_user=" + id;
+  const url = window.location.origin + "/frontend/new_task.html";
   window.location.href = url;
 });
-
-
-function edit_task(id_chamados){
-  const url = window.location.origin + "/frontend/edit_task.html?id_task=" + id_task;
-  window.location.href = url;
-}
-
-// ---------------------------------------------------
-function delete_task(id_chamados){
-  console.log(id_chamados);
-}
-

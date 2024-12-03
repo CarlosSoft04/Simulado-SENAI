@@ -1,0 +1,70 @@
+body{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+a{
+    text-decoration: none;
+    color: aqua;
+
+}
+
+#login{
+    text-align: center;   /* Alinha o conteudo horizontalmente no centro de um bloco de textoou de um elemento */
+    justify-content: center; /* Alinha os itens dentro de um container flexivel */
+    align-items: center; /* Alinha os itens dentro de um container flexivel ao longo do eixo transversal */
+    display: flex; /* Ele se torna um container flexivel */
+    flex-direction: column; /* Especifica que os itens serao distribuidos na horizontal */
+} 
+
+.email input {
+    border-radius: 15px;
+    border: none;
+    width: 400px;
+    height: 45px;
+    padding-left: 15px;
+    margin-top: 25px;
+    background-color: rgb(163, 167, 167);    
+}
+
+.senha input{
+    border-radius: 15px ;
+    border:none ;
+    width: 400px;
+    height: 45px;
+    padding-left:15px ;
+    color: white;
+    margin-top: 25px;
+    background-color: rgb(163, 167, 167);   
+}
+
+.entrar input {
+    cursor: pointer;
+    width: 120px;
+    height: 40px;
+    border-radius: 20px;
+    border: none;
+    color: black;
+    background-color: rgb(109, 165, 232);
+}
+
+input::placeholder {
+    color: white;
+}
+
+h1{
+    color: white;
+}
+
+.caixa{
+    margin-top: 65px;
+}
+
+input:focus {
+    outline: none;
+
+}

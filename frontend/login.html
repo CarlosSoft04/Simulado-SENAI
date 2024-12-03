@@ -12,11 +12,37 @@
     
 </head>
 <body>
-    <div id="container">
-        
+    <div id="login">
 
+        <div class="caixa">
+
+            <h1>LOGIN</h1>
+
+            <div class="email">
+                <input type="email" placeholder="E-mail">
+            </div>
+
+            <div class="senha">
+                <input type="password" placeholder="Senha">
+            </div>
+
+            <div class="entrar">
+                <p>Ainda nao tem uma conta? <a href="cadastro.html">Crie uma</a></p>
+                <input type="submit" value="Entrar" id="btn_entrar">
+            </div>
+
+        </div>
 
     </div>
+
+    <script>
+        document.getElementById('btn_entrar').addEventListener('click', function(event) {
+            event.preventDefault();
+
+            window.location.href = "index.html";
+        });
+    </script>
+    
 
    
 
